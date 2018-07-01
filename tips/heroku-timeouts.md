@@ -1,19 +1,6 @@
-Heroku will time out a request after 30 seconds, responding with an H12 error. Your app doesn't know this, though, and will continue processing the request unless you do something to stop it.
+Seeing H12 (request timeout) errors on Heroku? Verify your timeout settings for any library that does IO (database, disk, network).
 
-Rack::Timeout can raise an exception to avoid these runaway requests, but it has its own problems. Supplement with library-specific timeouts for any IO (database, disk, network) to leaving your app or data in an unexpected state.
-
----
-
-```ruby
-# Gemfile
-
-gem 'rack-timeout'
-
-# This will raise an exception after 15 seconds, well before Heroku's 30s
-# timeout kicks in. See the gem README for more configuration options,
-# but the defaults are a good place to start.
-# https://github.com/heroku/rack-timeout
-```
+In my experience Rack::Timeout causes more problems than it solves, but it does have excellent docs on the risks/tradeoffs: https://github.com/heroku/rack-timeout/blob/master/doc/risks.md
 
 ---
 
@@ -26,6 +13,19 @@ production:
     statement_timeout: <%= ENV.fetch('DB_STATEMENT_TIMEOUT') { 3000 } %>
 
 # This is a database-specific configuration (Postgres in this case)
+```
+
+---
+
+```shell
+# Procfile
+
+release: DB_STATEMENT_TIMEOUT=60000 rails db:migrate
+web: rails server
+worker: bundle exec sidekiq
+
+# Override your database statement timeout when running migrations or other
+# long-running processes so you don't encounter unexpected timeouts.
 ```
 
 ---
