@@ -1,6 +1,6 @@
-Your Heroku logs are critical to troubleshooting issues and understanding the behavior of your application. Request IDs are how you correlate Heroku's router logs with your application's logs.
+Application logs are critical to troubleshooting issues and understanding the behavior. Request IDs are how you correlate logs for a single request.
 
-It's up to you to ensure your application includes the Request ID in it's log output. For newer versions of Rails, this is added by default.
+It's up to you to ensure your application includes the Request ID in log output. For newer versions of Rails, this is added by default.
 
 ---
 
