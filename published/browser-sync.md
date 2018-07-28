@@ -1,4 +1,4 @@
-browser-sync is an awesome utility for live-updating your browser as you make code changes. I find it invaluable for in-browser design (with @tailwindcss). Use it on an existing web app, or use it as a static web server.
+browser-sync is an awesome utility for live-updating your browser as you make code changes. I love it for in-browser design (with @tailwindcss). Use it to proxy an existing web app or as a static web server.
 
 https://browsersync.io
 

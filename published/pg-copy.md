@@ -1,4 +1,4 @@
-Copy production data to a review app to test your database migrations.
+Recently I had some complex migrations that I wanted to test on a review app. Fortunately, @heroku makes it really easy to copy a database from one app to another.
 
 ---
 
@@ -7,6 +7,7 @@ Copy production data to a review app to test your database migrations.
 
 # Create a fresh new database in your review app (or staging... wherever).
 # Replace "hottips-pr-100" with the name of your target app.
+# Note the "color" of the new database in the output of this command.
 ```
 
 ---
